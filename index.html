@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will you be my Valentine?</title>
+    <title>Will you be my Valentine? 🐼</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@300;400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,99 +15,200 @@
         
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #ffe6e6;
+            background: linear-gradient(135deg, #ffe6e6 0%, #fff0f5 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            background-image: radial-gradient(#ffb3b3 2px, transparent 2px);
-            background-size: 30px 30px;
+            background-image: 
+                radial-gradient(#ffb3b3 2px, transparent 2px),
+                radial-gradient(#ffcccc 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            background-position: 0 0, 25px 25px;
         }
         
         .container {
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.25);
             padding: 40px;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             position: relative;
             overflow: hidden;
-            border: 8px solid #ff4d6d;
+            border: 12px solid #ff99ac;
+            background-clip: padding-box;
+            animation: gentlePulse 4s infinite alternate;
+        }
+
+        @keyframes gentlePulse {
+            0% {
+                box-shadow: 0 20px 40px rgba(255, 77, 109, 0.25);
+            }
+            100% {
+                box-shadow: 0 20px 40px rgba(255, 77, 109, 0.4);
+            }
         }
         
         h1 {
             font-family: 'Dancing Script', cursive;
             color: #ff4d6d;
-            font-size: 3.5rem;
-            margin-bottom: 30px;
+            font-size: 3.8rem;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '🐼';
+            position: absolute;
+            top: -15px;
+            right: -50px;
+            font-size: 2.5rem;
+            animation: pandaWiggle 2s infinite;
+        }
+
+        @keyframes pandaWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .panda-container {
+            margin: 25px auto;
+            position: relative;
+            max-width: 300px;
+            height: 200px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border: 5px solid #ffccd5;
+        }
+
+        .panda-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .panda-container:hover .panda-img {
+            transform: scale(1.05);
+        }
+
+        .panda-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #ff4d6d;
+            border-radius: 0 0 15px 15px;
         }
         
         .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
             flex-wrap: wrap;
             min-height: 120px;
             position: relative;
         }
         
         .btn {
-            padding: 15px 40px;
-            font-size: 1.8rem;
+            padding: 18px 50px;
+            font-size: 2rem;
             border: none;
-            border-radius: 50px;
+            border-radius: 60px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             font-family: 'Roboto', sans-serif;
+            z-index: 10;
+            position: relative;
+            overflow: hidden;
+            min-width: 180px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
         
+        /* GREEN YES BUTTON */
         #yes-btn {
-            background-color: #ff4d6d;
+            background: linear-gradient(145deg, #4CAF50, #45a049);
             color: white;
-            font-size: 1.8rem;
-            min-width: 150px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        #no-btn {
-            background-color: #f0f0f0;
-            color: #333;
-            min-width: 150px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid #3d8b40;
         }
         
         #yes-btn:hover {
-            background-color: #ff3355;
+            background: linear-gradient(145deg, #45a049, #3d8b40);
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        #yes-btn:active {
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        /* RED NO BUTTON */
+        #no-btn {
+            background: linear-gradient(145deg, #ff4444, #cc0000);
+            color: white;
+            border: 3px solid #b30000;
         }
         
         #no-btn:hover {
-            background-color: #e0e0e0;
+            background: linear-gradient(145deg, #cc0000, #b30000);
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 30px rgba(255, 68, 68, 0.4);
+        }
+
+        #no-btn:active {
+            transform: translateY(-4px) scale(1.05);
         }
         
         .response-message {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            color: #ff4d6d;
-            margin-top: 40px;
-            min-height: 100px;
+            font-size: 3.2rem;
+            color: #ff3366;
+            margin: 40px 0;
+            min-height: 120px;
             opacity: 0;
-            transition: opacity 1s ease;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
+            transition: opacity 1s ease, transform 1s ease;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.15);
+            transform: translateY(20px);
+            border: 3px solid #ffccd5;
+        }
+
+        .response-message.show {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .hearts {
@@ -118,94 +219,235 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
+            overflow: hidden;
         }
         
         .heart {
             position: absolute;
-            font-size: 24px;
-            color: #ff4d6d;
             opacity: 0;
-            animation: float 5s linear infinite;
+            animation: float 8s linear infinite;
+            z-index: 1;
         }
-        
-        @keyframes float {
+
+        .heart.panda-heart {
+            animation: pandaFloat 6s linear infinite;
+        }
+
+        @keyframes pandaFloat {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.5);
                 opacity: 0;
             }
             10% {
-                opacity: 1;
+                opacity: 0.9;
             }
             90% {
-                opacity: 1;
+                opacity: 0.9;
             }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-100px) translateX(50px) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(1);
                 opacity: 0;
             }
         }
         
         .instructions {
             margin-top: 30px;
-            color: #777;
-            font-size: 1rem;
-            font-style: italic;
+            color: #666;
+            font-size: 1.1rem;
             text-align: center;
-            max-width: 500px;
-            line-height: 1.5;
+            max-width: 600px;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 2px dashed #ffb3c6;
+        }
+
+        .instructions i {
+            color: #ff4d6d;
+            font-weight: bold;
         }
         
         .no-counter {
-            margin-top: 15px;
+            margin-top: 20px;
             color: #ff4d6d;
             font-weight: bold;
-            font-size: 1.2rem;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
+            font-size: 1.3rem;
+            min-height: 30px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
             display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px solid #ffccd5;
         }
         
         .celebrate {
             animation: celebrate 0.5s 3;
         }
-        
+
         @keyframes celebrate {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
+
+        .panda-celebrate {
+            animation: pandaCelebrate 0.8s 3;
+        }
+
+        @keyframes pandaCelebrate {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+                filter: brightness(1);
+            }
+            50% { 
+                transform: scale(1.1) rotate(5deg); 
+                filter: brightness(1.2);
+            }
+        }
+
+        /* Panda bamboo decoration */
+        .bamboo {
+            position: absolute;
+            width: 10px;
+            height: 100px;
+            background: linear-gradient(to bottom, #8BC34A, #689F38);
+            border-radius: 5px;
+            z-index: -1;
+        }
+
+        .bamboo:nth-child(1) {
+            left: 5%;
+            top: 10%;
+            transform: rotate(15deg);
+        }
+
+        .bamboo:nth-child(2) {
+            right: 5%;
+            bottom: 10%;
+            transform: rotate(-10deg);
+        }
         
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .container {
                 padding: 30px 20px;
+                max-width: 95%;
+            }
+            
+            .btn {
+                padding: 15px 35px;
+                font-size: 1.7rem;
+                min-width: 150px;
+            }
+            
+            .buttons-container {
+                gap: 25px;
+                min-height: 100px;
+            }
+            
+            .response-message {
+                font-size: 2.5rem;
+                padding: 20px;
+            }
+            
+            .panda-container {
+                max-width: 250px;
+                height: 180px;
+            }
+
+            .panda-caption {
+                font-size: 1.2rem;
+            }
+
+            .instructions {
+                font-size: 1rem;
+                padding: 12px 20px;
+                margin-top: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h1::after {
+                font-size: 1.8rem;
+                right: -35px;
+                top: -10px;
             }
             
             .btn {
                 padding: 12px 30px;
                 font-size: 1.5rem;
+                min-width: 130px;
             }
             
             .buttons-container {
+                flex-direction: column;
                 gap: 20px;
             }
             
             .response-message {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+
+            .panda-container {
+                max-width: 200px;
+                height: 150px;
+            }
+
+            .panda-caption {
+                font-size: 1rem;
+                padding: 6px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Bamboo decorations -->
+    <div class="bamboo"></div>
+    <div class="bamboo"></div>
+
     <div class="container">
         <h1>Will you be my Valentine?</h1>
         
+        <!-- Cute Panda Picture -->
+        <div class="panda-container">
+            <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMHBhbmRhfGVufDB8fDB8fHww" 
+                 alt="Cute Panda" class="panda-img" id="panda-img">
+            <div class="panda-caption">🐼 Will you be mine? 🐼</div>
+        </div>
+        
         <div class="buttons-container">
-            <button id="yes-btn" class="btn">Yes</button>
-            <button id="no-btn" class="btn">No</button>
+            <button id="yes-btn" class="btn">
+                <i class="fas fa-heart"></i> Yes
+            </button>
+            <button id="no-btn" class="btn">
+                <i class="fas fa-heart-broken"></i> No
+            </button>
         </div>
         
         <div id="response-message" class="response-message"></div>
@@ -215,7 +457,9 @@
     </div>
     
     <div class="instructions">
-        <p>Click "Yes" to accept the Valentine's invitation. If you click "No", the "Yes" button will grow larger and you'll be asked to reconsider with different prompts.</p>
+        <p><i class="fas fa-heart" style="color:#4CAF50;"></i> Click the <strong style="color:#4CAF50;">GREEN "Yes" button</strong> to accept ❤️</p>
+        <p><i class="fas fa-heart-broken" style="color:#ff4444;"></i> Click the <strong style="color:#ff4444;">RED "No" button</strong> - but it will grow the Yes button!</p>
+        <p style="margin-top: 10px;"><i class="fas fa-paw"></i> Watch the cute panda celebrate when you say Yes! 🐼</p>
     </div>
 
     <script>
@@ -225,58 +469,72 @@
         const responseMessage = document.getElementById('response-message');
         const noCounter = document.getElementById('no-counter');
         const heartsContainer = document.getElementById('hearts-container');
+        const pandaImg = document.getElementById('panda-img');
         
-        let yesSize = 1.8; // Initial font size in rem
-        let yesWidth = 150; // Initial width in px
+        let yesSize = 2.0; // Initial font size in rem
+        let yesWidth = 180; // Initial width in px
         let noClicks = 0;
         let yesClicks = 0;
         
         // Phrases for the "No" button
         const noButtonPhrases = [
-            "No",
-            "Think again",
-            "Think twice",
-            "Are you sure?",
-            "Really sure?",
-            "Give it another thought",
-            "You might regret this",
-            "I'll be sad",
-            "My heart will break",
-            "Last chance!",
-            "Please?",
-            "Don't do this!",
-            "I'll be devastated",
-            "One more chance?",
-            "Final offer!"
+            "No ❌",
+            "Think again 🤔",
+            "Think twice 🧐",
+            "Are you sure? 😟",
+            "Really sure? 🥺",
+            "Give it another thought 💭",
+            "You might regret this 😔",
+            "I'll be sad 😢",
+            "My heart will break 💔",
+            "Last chance! ⏰",
+            "Please? 🥺",
+            "Don't do this! 🙏",
+            "I'll be devastated 😭",
+            "One more chance? 🍀",
+            "Final offer! 🎁"
         ];
         
         // Cute acceptance messages
         const acceptanceMessages = [
-            "Yay! You've made me the happiest person! 💖",
-            "Hooray! This is the best Valentine's ever! 💕",
-            "You just made my day! Can't wait to celebrate with you! 💘",
-            "My heart is doing a happy dance! Thank you for saying yes! 💓",
-            "This is the best news I've ever received! I'm so excited! 💝",
-            "You've just made this the perfect Valentine's Day! 💞",
-            "I'm over the moon! This is amazing! 🌙💖",
-            "Best decision ever! Let's make wonderful memories! 💑",
-            "My heart is bursting with joy! Thank you! 💗",
-            "This just made my entire year! You're the best! 🎉💝"
+            "Yay! You've made me the happiest person! 🐼💖",
+            "Hooray! This is the best Valentine's ever! 🎉💕",
+            "The panda and I are so happy! Thank you! 🐼❤️",
+            "My heart is doing a happy dance with the panda! 💃🐼🕺",
+            "Best decision ever! Let's eat bamboo together! 🐼🎋",
+            "You've just made this panda's day perfect! 🐼💝",
+            "I'm over the moon! The panda is celebrating! 🌙🐼💖",
+            "The panda approves! This is amazing! 🐼👍💞",
+            "My heart is bursting with joy! Panda high-five! 🐼✋💗",
+            "This just made my entire year! Panda party! 🐼🎉💝"
         ];
         
         // Create floating hearts
         function createHearts(count, isHappy = true) {
-            const heartSymbols = isHappy ? ['❤️', '💖', '💕', '💘', '💓', '💝', '💞', '💗'] : ['💔', '😢', '😔', '🥺'];
+            const heartSymbols = isHappy ? ['❤️', '💚', '💖', '💕', '💘', '💓', '💝', '💞', '💗', '🐼'] : ['💔', '😢', '😔', '🥺'];
             
             for (let i = 0; i < count; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart');
+                
+                // Add panda class for some hearts
+                if (isHappy && Math.random() > 0.7) {
+                    heart.classList.add('panda-heart');
+                }
+                
                 heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
                 heart.style.left = `${Math.random() * 100}%`;
                 heart.style.animationDuration = `${3 + Math.random() * 7}s`;
                 heart.style.animationDelay = `${Math.random() * 5}s`;
                 heart.style.fontSize = `${Math.random() * 20 + 15}px`;
-                heart.style.color = isHappy ? '#ff4d6d' : '#999';
+                
+                // Color hearts based on type
+                if (isHappy) {
+                    heart.style.color = Math.random() > 0.5 ? '#4CAF50' : '#ff4d6d';
+                } else {
+                    heart.style.color = '#ff4444';
+                }
+                
                 heartsContainer.appendChild(heart);
                 
                 // Remove heart after animation completes
@@ -294,21 +552,26 @@
             
             // Change button text to show excitement
             if (yesClicks === 1) {
-                yesBtn.textContent = "Yes! 💖";
-                yesBtn.style.backgroundColor = "#ff3366";
+                yesBtn.innerHTML = '<i class="fas fa-heart"></i> Yes! 🎉';
+                yesBtn.style.background = 'linear-gradient(145deg, #2E7D32, #1B5E20)';
                 yesBtn.classList.add('celebrate');
+                
+                // Make panda celebrate
+                pandaImg.classList.add('panda-celebrate');
                 
                 // Show a random acceptance message
                 const randomMessage = acceptanceMessages[Math.floor(Math.random() * acceptanceMessages.length)];
                 responseMessage.textContent = randomMessage;
-                responseMessage.style.opacity = 1;
+                responseMessage.classList.add('show');
                 
                 // Create lots of hearts
-                createHearts(30, true);
+                createHearts(40, true);
                 
                 // Hide the no button
                 noBtn.style.display = "none";
-                noCounter.textContent = "";
+                noCounter.textContent = "Yay! Thank you for saying Yes! 🎉🐼";
+                noCounter.style.color = "#4CAF50";
+                noCounter.style.borderColor = "#4CAF50";
                 
                 // Play a happy sound
                 playHappySound();
@@ -317,18 +580,18 @@
                 document.querySelector('.container').classList.add('celebrate');
                 
                 // Add sparkle effect
-                for (let i = 0; i < 20; i++) {
+                for (let i = 0; i < 25; i++) {
                     setTimeout(() => {
                         const sparkle = document.createElement('div');
                         sparkle.classList.add('heart');
-                        sparkle.innerHTML = '✨';
+                        sparkle.innerHTML = Math.random() > 0.5 ? '✨' : '🐼';
                         sparkle.style.left = `${Math.random() * 100}%`;
                         sparkle.style.top = `${Math.random() * 100}%`;
-                        sparkle.style.fontSize = `${Math.random() * 15 + 10}px`;
-                        sparkle.style.color = '#FFD700';
+                        sparkle.style.fontSize = `${Math.random() * 20 + 10}px`;
+                        sparkle.style.color = Math.random() > 0.5 ? '#FFD700' : '#4CAF50';
                         sparkle.style.animationDuration = `${1 + Math.random() * 2}s`;
                         heartsContainer.appendChild(sparkle);
-                    }, i * 100);
+                    }, i * 80);
                 }
             }
         });
@@ -338,14 +601,18 @@
             noClicks++;
             
             // Increase the size of the Yes button
-            yesSize += 0.5;
-            yesWidth += 20;
+            yesSize += 0.6;
+            yesWidth += 25;
             yesBtn.style.fontSize = `${yesSize}rem`;
             yesBtn.style.width = `${yesWidth}px`;
             
+            // Make Yes button pulse
+            yesBtn.classList.add('celebrate');
+            setTimeout(() => yesBtn.classList.remove('celebrate'), 500);
+            
             // Change the text of the No button
             if (noClicks <= noButtonPhrases.length) {
-                noBtn.textContent = noButtonPhrases[noClicks - 1];
+                noBtn.innerHTML = `<i class="fas fa-heart-broken"></i> ${noButtonPhrases[noClicks - 1]}`;
                 
                 // Make the No button smaller for some phrases
                 if (noClicks > 3) {
@@ -354,14 +621,19 @@
             } else {
                 // After all phrases, loop back to the beginning
                 const index = (noClicks - 1) % noButtonPhrases.length;
-                noBtn.textContent = noButtonPhrases[index];
+                noBtn.innerHTML = `<i class="fas fa-heart-broken"></i> ${noButtonPhrases[index]}`;
             }
             
             // Update the counter display
-            noCounter.textContent = `You've rejected the invitation ${noClicks} time${noClicks !== 1 ? 's' : ''}. The "Yes" button is getting bigger!`;
+            noCounter.textContent = `You've rejected ${noClicks} time${noClicks !== 1 ? 's' : ''}. The "Yes" button is ${Math.round(yesSize/2*10)}% bigger!`;
+            noCounter.style.color = "#ff4444";
+            noCounter.style.borderColor = "#ff4444";
+            
+            // Make panda look sad
+            pandaImg.style.filter = "grayscale(30%) brightness(0.9)";
             
             // Create a few sad hearts
-            createHearts(5, false);
+            createHearts(8, false);
             
             // Play a sad sound
             playSadSound();
@@ -372,8 +644,8 @@
                 const containerRect = container.getBoundingClientRect();
                 
                 // Calculate random position within container
-                const maxX = containerRect.width - noBtn.offsetWidth - 20;
-                const maxY = containerRect.height - noBtn.offsetHeight - 20;
+                const maxX = containerRect.width - noBtn.offsetWidth - 30;
+                const maxY = containerRect.height - noBtn.offsetHeight - 30;
                 
                 const x = Math.random() * maxX;
                 const y = Math.random() * maxY;
@@ -395,7 +667,7 @@
             }
             
             // If "Yes" button gets too big, adjust layout
-            if (yesWidth > 300) {
+            if (yesWidth > 350) {
                 document.querySelector('.buttons-container').style.flexDirection = 'column';
                 document.querySelector('.buttons-container').style.alignItems = 'center';
             }
@@ -463,12 +735,26 @@
         }
         
         // Create some initial hearts
-        createHearts(15, true);
+        createHearts(20, true);
+        
+        // Panda hover effect
+        pandaImg.addEventListener('mouseover', function() {
+            if (yesClicks === 0) {
+                pandaImg.style.transform = "scale(1.05)";
+                createHearts(3, true);
+            }
+        });
+        
+        pandaImg.addEventListener('mouseout', function() {
+            if (yesClicks === 0) {
+                pandaImg.style.transform = "scale(1)";
+            }
+        });
         
         // Instructions for mobile users
         if ('ontouchstart' in window) {
             document.querySelector('.instructions').innerHTML += 
-                '<br><br><i>Tip: The "No" button will move around after a few taps!</i>';
+                '<br><br><i class="fas fa-mobile-alt"></i> <i>Tip: The "No" button will move around after a few taps!</i>';
         }
     </script>
 </body>
