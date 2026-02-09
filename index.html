@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffe6e6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: radial-gradient(#ffb3b3 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #ff4d6d;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff4d6d;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            min-height: 120px;
+            position: relative;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.8rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        #yes-btn {
+            background-color: #ff4d6d;
+            color: white;
+            font-size: 1.8rem;
+            min-width: 150px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        #no-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        #yes-btn:hover {
+            background-color: #ff3355;
+        }
+        
+        #no-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .response-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff4d6d;
+            margin-top: 40px;
+            min-height: 100px;
+            opacity: 0;
+            transition: opacity 1s ease;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff4d6d;
+            opacity: 0;
+            animation: float 5s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .instructions {
+            margin-top: 30px;
+            color: #777;
+            font-size: 1rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 500px;
+            line-height: 1.5;
+        }
+        
+        .no-counter {
+            margin-top: 15px;
+            color: #ff4d6d;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .celebrate {
+            animation: celebrate 0.5s 3;
+        }
+        
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1.5rem;
+            }
+            
+            .buttons-container {
+                gap: 20px;
+            }
+            
+            .response-message {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine?</h1>
+        
+        <div class="buttons-container">
+            <button id="yes-btn" class="btn">Yes</button>
+            <button id="no-btn" class="btn">No</button>
+        </div>
+        
+        <div id="response-message" class="response-message"></div>
+        <div id="no-counter" class="no-counter"></div>
+        
+        <div class="hearts" id="hearts-container"></div>
+    </div>
+    
+    <div class="instructions">
+        <p>Click "Yes" to accept the Valentine's invitation. If you click "No", the "Yes" button will grow larger and you'll be asked to reconsider with different prompts.</p>
+    </div>
+
+    <script>
+        // Initial setup
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const responseMessage = document.getElementById('response-message');
+        const noCounter = document.getElementById('no-counter');
+        const heartsContainer = document.getElementById('hearts-container');
+        
+        let yesSize = 1.8; // Initial font size in rem
+        let yesWidth = 150; // Initial width in px
+        let noClicks = 0;
+        let yesClicks = 0;
+        
+        // Phrases for the "No" button
+        const noButtonPhrases = [
+            "No",
+            "Think again",
+            "Think twice",
+            "Are you sure?",
+            "Really sure?",
+            "Give it another thought",
+            "You might regret this",
+            "I'll be sad",
+            "My heart will break",
+            "Last chance!",
+            "Please?",
+            "Don't do this!",
+            "I'll be devastated",
+            "One more chance?",
+            "Final offer!"
+        ];
+        
+        // Cute acceptance messages
+        const acceptanceMessages = [
+            "Yay! You've made me the happiest person! 💖",
+            "Hooray! This is the best Valentine's ever! 💕",
+            "You just made my day! Can't wait to celebrate with you! 💘",
+            "My heart is doing a happy dance! Thank you for saying yes! 💓",
+            "This is the best news I've ever received! I'm so excited! 💝",
+            "You've just made this the perfect Valentine's Day! 💞",
+            "I'm over the moon! This is amazing! 🌙💖",
+            "Best decision ever! Let's make wonderful memories! 💑",
+            "My heart is bursting with joy! Thank you! 💗",
+            "This just made my entire year! You're the best! 🎉💝"
+        ];
+        
+        // Create floating hearts
+        function createHearts(count, isHappy = true) {
+            const heartSymbols = isHappy ? ['❤️', '💖', '💕', '💘', '💓', '💝', '💞', '💗'] : ['💔', '😢', '😔', '🥺'];
+            
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDuration = `${3 + Math.random() * 7}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                heart.style.color = isHappy ? '#ff4d6d' : '#999';
+                heartsContainer.appendChild(heart);
+                
+                // Remove heart after animation completes
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.parentNode.removeChild(heart);
+                    }
+                }, 8000);
+            }
+        }
+        
+        // Handle "Yes" button click
+        yesBtn.addEventListener('click', function() {
+            yesClicks++;
+            
+            // Change button text to show excitement
+            if (yesClicks === 1) {
+                yesBtn.textContent = "Yes! 💖";
+                yesBtn.style.backgroundColor = "#ff3366";
+                yesBtn.classList.add('celebrate');
+                
+                // Show a random acceptance message
+                const randomMessage = acceptanceMessages[Math.floor(Math.random() * acceptanceMessages.length)];
+                responseMessage.textContent = randomMessage;
+                responseMessage.style.opacity = 1;
+                
+                // Create lots of hearts
+                createHearts(30, true);
+                
+                // Hide the no button
+                noBtn.style.display = "none";
+                noCounter.textContent = "";
+                
+                // Play a happy sound
+                playHappySound();
+                
+                // Add celebration effect to container
+                document.querySelector('.container').classList.add('celebrate');
+                
+                // Add sparkle effect
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const sparkle = document.createElement('div');
+                        sparkle.classList.add('heart');
+                        sparkle.innerHTML = '✨';
+                        sparkle.style.left = `${Math.random() * 100}%`;
+                        sparkle.style.top = `${Math.random() * 100}%`;
+                        sparkle.style.fontSize = `${Math.random() * 15 + 10}px`;
+                        sparkle.style.color = '#FFD700';
+                        sparkle.style.animationDuration = `${1 + Math.random() * 2}s`;
+                        heartsContainer.appendChild(sparkle);
+                    }, i * 100);
+                }
+            }
+        });
+        
+        // Handle "No" button click
+        noBtn.addEventListener('click', function() {
+            noClicks++;
+            
+            // Increase the size of the Yes button
+            yesSize += 0.5;
+            yesWidth += 20;
+            yesBtn.style.fontSize = `${yesSize}rem`;
+            yesBtn.style.width = `${yesWidth}px`;
+            
+            // Change the text of the No button
+            if (noClicks <= noButtonPhrases.length) {
+                noBtn.textContent = noButtonPhrases[noClicks - 1];
+                
+                // Make the No button smaller for some phrases
+                if (noClicks > 3) {
+                    noBtn.style.fontSize = `${Math.max(1.2, 1.8 - (noClicks * 0.1))}rem`;
+                }
+            } else {
+                // After all phrases, loop back to the beginning
+                const index = (noClicks - 1) % noButtonPhrases.length;
+                noBtn.textContent = noButtonPhrases[index];
+            }
+            
+            // Update the counter display
+            noCounter.textContent = `You've rejected the invitation ${noClicks} time${noClicks !== 1 ? 's' : ''}. The "Yes" button is getting bigger!`;
+            
+            // Create a few sad hearts
+            createHearts(5, false);
+            
+            // Play a sad sound
+            playSadSound();
+            
+            // Move the No button randomly to make it harder to click
+            if (noClicks > 2) {
+                const container = document.querySelector('.buttons-container');
+                const containerRect = container.getBoundingClientRect();
+                
+                // Calculate random position within container
+                const maxX = containerRect.width - noBtn.offsetWidth - 20;
+                const maxY = containerRect.height - noBtn.offsetHeight - 20;
+                
+                const x = Math.random() * maxX;
+                const y = Math.random() * maxY;
+                
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = `${x}px`;
+                noBtn.style.top = `${y}px`;
+                
+                // Make it even harder after more clicks
+                if (noClicks > 5) {
+                    // Add escape effect - button moves when mouse gets close
+                    noBtn.addEventListener('mouseover', function escapeButton() {
+                        const newX = Math.random() * maxX;
+                        const newY = Math.random() * maxY;
+                        noBtn.style.left = `${newX}px`;
+                        noBtn.style.top = `${newY}px`;
+                    });
+                }
+            }
+            
+            // If "Yes" button gets too big, adjust layout
+            if (yesWidth > 300) {
+                document.querySelector('.buttons-container').style.flexDirection = 'column';
+                document.querySelector('.buttons-container').style.alignItems = 'center';
+            }
+        });
+        
+        // Function to play happy sound
+        function playHappySound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create multiple oscillators for a chord
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                
+                notes.forEach((freq, index) => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.1);
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                    gainNode.gain.linearRampToValueAtTime(0.2, audioContext.currentTime + 0.05);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5 + index * 0.1);
+                    
+                    oscillator.start(audioContext.currentTime + index * 0.1);
+                    oscillator.stop(audioContext.currentTime + 0.6 + index * 0.1);
+                });
+            } catch (e) {
+                // Audio not supported or user hasn't interacted with page
+                console.log("Audio not available");
+            }
+        }
+        
+        // Function to play sad sound
+        function playSadSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // Sad descending melody
+                const frequencies = [392, 349.23, 329.63, 293.66, 261.63]; // G4, F4, E4, D4, C4
+                
+                frequencies.forEach((freq, index) => {
+                    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.2);
+                });
+                
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.1);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.0);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 1.0);
+            } catch (e) {
+                console.log("Audio not available");
+            }
+        }
+        
+        // Create some initial hearts
+        createHearts(15, true);
+        
+        // Instructions for mobile users
+        if ('ontouchstart' in window) {
+            document.querySelector('.instructions').innerHTML += 
+                '<br><br><i>Tip: The "No" button will move around after a few taps!</i>';
+        }
+    </script>
+</body>
+</html>
